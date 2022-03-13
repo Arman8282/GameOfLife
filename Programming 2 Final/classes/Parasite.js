@@ -1,9 +1,7 @@
-class Parasite {
+class Parasite extends LivingCreature{
 
     constructor(x, y, id, matrix, objectMatrix) {
-        this.id = id;
-        this.x = x;
-        this.y = y;
+        super(x,y,id)
         this.matrix = matrix;
         this.objectMatrix = objectMatrix;
         this.energy = 5;
@@ -23,21 +21,7 @@ class Parasite {
         ];
     }
 
-    chooseCells(characterId) {
-        this.updateCoordinates();
-        let found = [];
-        for (let i = 0; i < this.directions.length; i++) {
-            let coordinates = this.directions[i];
-            let x = coordinates[0];
-            let y = coordinates[1];
-            if (x >= 0 && x < this.matrix[0].length && y >= 0 && y < this.matrix.length) {
-                if (this.matrix[y][x] == characterId) {
-                    found.push(this.directions[i]);
-                }
-            }
-        }
-        return found;
-    }
+    
 
     multiply() {
         let targetCells = this.chooseCells(3);
