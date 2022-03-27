@@ -1,5 +1,5 @@
 module.exports = class LivingCreature {
-    constructor(x, y, id, objectMatrix){
+    constructor(x, y,  objectMatrix){
         this.x = x;
         this.y = y;
         this.multiplay = 0;
