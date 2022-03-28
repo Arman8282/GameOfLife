@@ -12,11 +12,19 @@ app.get('/', function (req, res) {
 server.listen(3000);
 
 matrix = [];
+grassArr =[]
+grassEaterArr =[]
+parasiteArr =[]
+predatorArr =[]
+robotArr =[]
+
+
+
 function createMatrix(horizontalLength, verticalLength) {
     for (let y = 0; y < verticalLength; y++) {
         matrix[y] = [];
         for (let x = 0; x < horizontalLength; x++) {
-            const randomSectionCursor = Math.random()*100;
+            const randomSectionCursor = Math.floor(Math.random()*100);
             if (randomSectionCursor < 45) {
                 matrix[y][x] = 1;
             }
@@ -41,30 +49,30 @@ function createMatrix(horizontalLength, verticalLength) {
 }
 io.sockets.emit("send matrix", matrix)
 
-function createObjectsMatrix(matrix){
+function createObjectsMatrix(){
     
-    for(let y = 0;y<matrix.length;y++){
-        newObjectsMatrix[y]=[];
+    for(let y = 0;y<matrix[0].length;y++){
+        matrix[y]=[];
         for(let x = 0;x<matrix[y].length;x++){
             if(matrix[y][x]===1){
-                const newGrass= new Grass(x,y,1,matrix,newObjectsMatrix);
-                newObjectsMatrix[y][x] = newGrass;
+                grassArr.push(new Grass(x,y,1,matrix,newObjectsMatrix));
+              
             }
             else if(matrix[y][x]===2){
-                const newGrassEater= new GrassEater(x,y,2,matrix,newObjectsMatrix);
-                newObjectsMatrix[y][x] = newGrassEater;
+                 
+                grassEaterArr.push(new GrassEater(x,y,2,matrix,newObjectsMatrix));
             }
             else if(matrix[y][x]===3){
-                const newPredator= new Predator(x,y,3,matrix,newObjectsMatrix);
-                newObjectsMatrix[y][x] = newPredator;
+                predatorArr.push(new Predator(x,y,3,matrix,newObjectsMatrix));
+                
             }
             else if(matrix[y][x]===4){
-                const newParasite= new Parasite(x,y,4,matrix,newObjectsMatrix);
-                newObjectsMatrix[y][x] = newParasite;
+                parasiteArr.push(new Parasite(x,y,4,matrix,newObjectsMatrix));
+                
             }
             else if(matrix[y][x]===5){
-                const newRobot= new Robot(x,y,5,matrix,newObjectsMatrix);
-                newObjectsMatrix[y][x] = newRobot;
+                robotArr.push(new Robot(x,y,5,matrix,newObjectsMatrix));
+                
             }    
             else{
                 newObjectsMatrix[y][x]=null;
@@ -76,6 +84,7 @@ io.sockets.emit("send matrix", matrix)}
 
 
 io.on('connection', function (socket) {
+    createMatrix(50,50)
     createObjectsMatrix()
 })
 

@@ -4,7 +4,7 @@ const side = 20;
 function setup(){
     createCanvas(50*side,50*side);
     background("grey");   
-    frameRate(30);
+    // frameRate(30);
 }
 
 
@@ -12,7 +12,7 @@ function setup(){
 
 function drawMatrix(matrix){
     for(let y  = 0;y<matrix.length;y++){
-        for (let x = 0;x<matrix[0].length;x++){
+        for (let x = 0;x<matrix[y].length;x++){
             if(matrix[y][x]===1){
                 fill("green");
             }
