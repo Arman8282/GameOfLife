@@ -9,7 +9,7 @@ app.use(express.static("."));
 app.get('/', function (req, res) {
     res.redirect('index.html');
 });
-server.listen(3000);
+server.listen(3002);
 
 matrix = [];
 grassArr =[]
@@ -19,33 +19,19 @@ predatorArr =[]
 robotArr =[]
 
 
+var n = 50;
 
-function createMatrix(horizontalLength, verticalLength) {
-    for (let y = 0; y < verticalLength; y++) {
-        matrix[y] = [];
-        for (let x = 0; x < horizontalLength; x++) {
-            const randomSectionCursor = Math.floor(Math.random()*100);
-            if (randomSectionCursor < 45) {
-                matrix[y][x] = 1;
-            }
-            else if (randomSectionCursor < 70) {
-                matrix[y][x] = 2;
-            }
-            else if (randomSectionCursor < 85) {
-                matrix[y][x] = 3;
-            }
-            else if (randomSectionCursor < 87.5) {
-                matrix[y][x] = 4;
-            }
-            else if (randomSectionCursor > 99.7) {
-                matrix[y][x] = 5;
-            }
-            else {
-                matrix[y][x] = 0
-            }
-        }
-    }
-    // return newMatrix;
+
+function rand(min, max) {
+    return Math.random() * (max - min) + min;
+  }
+
+for (let i = 0; i < n; i++) {
+    matrix[i] = [];
+    for (let j = 0; j < n; j++) {
+        matrix[i][j] = Math.floor(rand(0, 6))
+        
+    }  
 }
 io.sockets.emit("send matrix", matrix)
 
@@ -83,8 +69,17 @@ function createObjectsMatrix(){
 io.sockets.emit("send matrix", matrix)}
 
 
+function xax(){
+    for (i in grassArr){
+        grassArr[i].mul()
+
+    }
+    io.sockets.emit("send matrix", matrix)
+}
+setInterval(xax,100);
+
 io.on('connection', function (socket) {
-    createMatrix(50,50)
+    // createMatrix(50,50)
     createObjectsMatrix()
 })
 

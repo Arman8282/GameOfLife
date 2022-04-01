@@ -41,8 +41,7 @@ class Predator {
 
     multiply() {
         let targetCells = this.chooseCells(0);
-        let newCell = random(targetCells)
-
+        let newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
         if (this.energy >= 18 && newCell) {
             let newX = newCell[0];
             let newY = newCell[1];
@@ -56,8 +55,7 @@ class Predator {
 
     move() {
         let targetCells = this.chooseCells(0);
-        let newCell = random(targetCells);
-
+        let newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
         if (this.energy > 0 && newCell) {
             let newX = newCell[0];
             let newY = newCell[1];
@@ -78,8 +76,7 @@ class Predator {
 
     eat() {
         let targetCells = this.chooseCells(2);
-        let newCell = random(targetCells);
-
+        let newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
         if (this.energy > 0 && newCell) {
             let newX = newCell[0];
             let newY = newCell[1];

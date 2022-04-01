@@ -99,8 +99,7 @@ class Robot {
 
     move() {
         let targetCells = this.chooseCells(0);
-        let newCell = random(targetCells);
-
+        let newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
         if (newCell) {
             let newX = newCell[0];
             let newY = newCell[1];

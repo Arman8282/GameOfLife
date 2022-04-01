@@ -41,8 +41,7 @@ class GrassEater {
 
     multiply() {
         let targetCells = this.chooseCells(0);
-        let newCell = random(targetCells)
-
+        let newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
         if (this.energy >= 12 && newCell) {
             let newX = newCell[0];
             let newY = newCell[1];
@@ -56,8 +55,8 @@ class GrassEater {
 
     move() {
         let targetCells = this.chooseCells(0);
-        let newCell = random(targetCells);
 
+        let newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
         if (this.energy > 0 && newCell) {
             let newX = newCell[0];
             let newY = newCell[1];
@@ -78,7 +77,7 @@ class GrassEater {
 
     eat() {
         let targetCells = this.chooseCells(1);
-        let newCell = random(targetCells);
+        let newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
 
         if (this.energy > 0 && newCell) {
             let newX = newCell[0];
