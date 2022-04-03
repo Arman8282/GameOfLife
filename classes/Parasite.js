@@ -40,7 +40,7 @@ class Parasite {
     }
 
     multiply() {
-        let targetCells = this.chooseCells(3);
+        let emptyCells = this.chooseCells(3);
         let newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
         if (this.energy >= 7 && newCell) {
             let newX = newCell[0];
@@ -54,7 +54,7 @@ class Parasite {
     }
 
     move() {
-        let targetCells = this.chooseCells(0);
+        let emptyCells = this.chooseCells(0);
         let newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
         if (this.energy > 0 && newCell) {
             let newX = newCell[0];
@@ -75,7 +75,7 @@ class Parasite {
     }
 
     eat() {
-        let targetCells = this.chooseCells(3);
+        let emptyCells = this.chooseCells(3);
         let newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
         if (this.energy > 0 && newCell) {
             let targetX = newCell[0];
@@ -98,7 +98,7 @@ class Parasite {
             this.objectMatrix[this.y][this.x] = null;
 
             const targetCells = this.chooseCells(3);
-            const deadPredator = random(targetCells);
+            const deadPredator = targetCells[Math.floor(Math.random()* emptyCells.length)];
 
             if(deadPredator){
                 const predX = deadPredator[0];

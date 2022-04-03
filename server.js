@@ -9,7 +9,7 @@ app.use(express.static("."));
 app.get('/', function (req, res) {
     res.redirect('index.html');
 });
-server.listen(3002);
+server.listen(3004);
 
 matrix = [];
 grassArr =[]
@@ -37,11 +37,13 @@ io.sockets.emit("send matrix", matrix)
 
 function createObjectsMatrix(){
     
-    for(let y = 0;y<matrix[0].length;y++){
+    for(let y = 0;y<matrix.length;y++){
         matrix[y]=[];
         for(let x = 0;x<matrix[y].length;x++){
-            if(matrix[y][x]===1){
+            if(matrix[y][x]==1){
+                matrix[y][x]=1
                 grassArr.push(new Grass(x,y,1,matrix,newObjectsMatrix));
+                console.log(grassArr);
               
             }
             else if(matrix[y][x]===2){
@@ -60,12 +62,16 @@ function createObjectsMatrix(){
                 robotArr.push(new Robot(x,y,5,matrix,newObjectsMatrix));
                 
             }    
-            else{
-                newObjectsMatrix[y][x]=null;
-            }
+            // else{
+            //     newObjectsMatrix[y][x]=null;
+            // }
 
         }
     }
+
+
+
+    
 io.sockets.emit("send matrix", matrix)}
 
 

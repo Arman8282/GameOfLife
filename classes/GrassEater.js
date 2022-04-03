@@ -23,24 +23,13 @@ class GrassEater {
         ];
     }
 
-    chooseCells(characterId) {
+    chooseCell(characterId) {
         this.updateCoordinates();
-        let found = [];
-        for (let i = 0; i < this.directions.length; i++) {
-            let coordinates = this.directions[i];
-            let x = coordinates[0];
-            let y = coordinates[1];
-            if (x >= 0 && x < this.matrix[0].length && y >= 0 && y < this.matrix.length) {
-                if (this.matrix[y][x] == characterId) {
-                    found.push(this.directions[i]);
-                }
-            }
-        }
-        return found;
+        super.chooseCell(characterId)
     }
 
     multiply() {
-        let targetCells = this.chooseCells(0);
+        let emptyCells = this.chooseCell(0);
         let newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
         if (this.energy >= 12 && newCell) {
             let newX = newCell[0];
@@ -54,7 +43,7 @@ class GrassEater {
     }
 
     move() {
-        let targetCells = this.chooseCells(0);
+        let emptyCells = this.chooseCell(0);
 
         let newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
         if (this.energy > 0 && newCell) {
@@ -76,7 +65,7 @@ class GrassEater {
     }
 
     eat() {
-        let targetCells = this.chooseCells(1);
+        let emptyCells = this.chooseCell(1);
         let newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
 
         if (this.energy > 0 && newCell) {

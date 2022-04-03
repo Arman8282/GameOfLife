@@ -98,7 +98,7 @@ class Robot {
     }
 
     move() {
-        let targetCells = this.chooseCells(0);
+        let emptyCells = this.chooseCells(0);
         let newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
         if (newCell) {
             let newX = newCell[0];
@@ -123,7 +123,7 @@ class Robot {
         let thirdTargets = this.chooseCells(4);
         let fourthTargets = this.chooseCells(1);
         let targets = fourthTargets.concat(thirdTargets.concat(secondTargets.concat(firstTargets)));
-        let newCell = random(targets);
+        let newCell = targets[Math.floor(Math.random * targets.length)];
 
         if (newCell) {
             let newX = newCell[0];
